@@ -19,13 +19,10 @@
 ;;
 
 (defn- execute-sql [dbspec sqlvec returns-data? options]
-  (println (prn-str sqlvec))
   (jdbc/with-db-transaction [conn (connection dbspec)]
     (if returns-data?
       (jdbc/query conn sqlvec (impl/default-result-options options))
       (first (jdbc/execute! conn sqlvec options)))))
-
-
 
 ;;
 ;; Public api

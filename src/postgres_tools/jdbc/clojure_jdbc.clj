@@ -12,7 +12,6 @@
 ;;
 
 (defn- execute-sql [dbspec sqlvec returns-data? options]
-  (println (prn-str sqlvec))
   (with-open [conn (jdbc/connection dbspec)]
     (jdbc/atomic conn
       (if returns-data?
@@ -64,4 +63,3 @@
      (jdbc/atomic conn
        (doseq [s sql-statements]
          (jdbc/execute conn s options))))))
-
